@@ -1,0 +1,961 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="grunt," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：引用来源：【grunt整合版】30分钟学会使用grunt打包前端代码 grunt是一套前端自动化工具，一个基于nodeJs的命令行工具，一般用于：① 压缩文件  ② 合并文件  ③ 简单语法检查对于其他用法，我还不太清楚，我们这里简单介绍下grunt的压缩、合并文件，初学，有误请包涵  ##准备阶段   1、nodeJs环境因为grunt是基于nodeJs的，所以首先各位需要安装nodeJ">
+<meta name="keywords" content="grunt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grunt">
+<meta property="og:url" content="http://yoursite.com/2015/12/20/2015-12-04-grunt整合版[30分钟学会grunt]/index.html">
+<meta property="og:site_name" content="Matchless’blog">
+<meta property="og:description" content="说明：引用来源：【grunt整合版】30分钟学会使用grunt打包前端代码 grunt是一套前端自动化工具，一个基于nodeJs的命令行工具，一般用于：① 压缩文件  ② 合并文件  ③ 简单语法检查对于其他用法，我还不太清楚，我们这里简单介绍下grunt的压缩、合并文件，初学，有误请包涵  ##准备阶段   1、nodeJs环境因为grunt是基于nodeJs的，所以首先各位需要安装nodeJ">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112017579622449.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112018246778586.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112019037591143.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112020055415469.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112025532554110.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112027097063953.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112028067046139.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/112029548774259.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/151430462467839.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/151512568713886.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/161354551832280.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/161405554656860.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/294743/201403/161444135745409.png">
+<meta property="og:updated_time" content="2017-06-18T04:12:26.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="grunt">
+<meta name="twitter:description" content="说明：引用来源：【grunt整合版】30分钟学会使用grunt打包前端代码 grunt是一套前端自动化工具，一个基于nodeJs的命令行工具，一般用于：① 压缩文件  ② 合并文件  ③ 简单语法检查对于其他用法，我还不太清楚，我们这里简单介绍下grunt的压缩、合并文件，初学，有误请包涵  ##准备阶段   1、nodeJs环境因为grunt是基于nodeJs的，所以首先各位需要安装nodeJ">
+<meta name="twitter:image" content="http://images.cnitblog.com/i/294743/201403/112017579622449.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/12/20/2015-12-04-grunt整合版[30分钟学会grunt]/"/>
+
+
+
+
+
+  <title>grunt | Matchless’blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Matchless’blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/12/20/2015-12-04-grunt整合版[30分钟学会grunt]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matchless">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.qq6636.com/touxiang/2016-04-05/763d9ae4ea7205206a69cbc38389a0e4.jpg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matchless’blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">grunt</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-20T00:00:00+08:00">
+                2015-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>说明：<a href="http://www.cnblogs.com/yexiaochai/p/3603389.html" target="_blank" rel="external">引用来源：</a><br><br>【grunt整合版】30分钟学会使用grunt打包前端代码<br></p>
+<h2 id="grunt"><a href="#grunt" class="headerlink" title="grunt"></a>grunt</h2><p>是一套前端自动化工具，一个基于nodeJs的命令行工具，一般用于：<br><br>① 压缩文件  <br><br>② 合并文件  <br><br>③ 简单语法检查<br><br>对于其他用法，我还不太清楚，我们这里简单介绍下grunt的压缩、合并文件，初学，有误请包涵</p>
+</blockquote>
+<p>##准备阶段</p>
+<blockquote>
+<ul>
+<li>1、nodeJs环境<br>因为grunt是基于nodeJs的，所以首先各位需要安装nodeJS环境，这块我们便不管了<br><br><a href="http://www.cnblogs.com/yexiaochai/p/3527418.html" target="_blank" rel="external">http://www.cnblogs.com/yexiaochai/p/3527418.html</a>  <br></li>
+<li>2、安装grunt<br><br>有了nodeJs环境后，我们便可以开始搞grunt了，因为我们可能在任何目录下运行打包程序，所以我们需要安装CLI<br><br>官方推荐在全局安装CLI（grunt的命令行接口）</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g grunt-cli</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这条命令将会把grunt命令植入系统路径，这样就能在任意目录运行他，原因是<br>每次运行grunt时，它都会使用node的require查找本地是否安装grunt，如果找到CLI便加载这个本地grunt库<br>然后应用我们项目中的GruntFile配置，并执行任务<br><br><br>PS：这段先不要管，安装完了往下看</p>
+</blockquote>
+<h2 id="实例学习：打包zepto"><a href="#实例学习：打包zepto" class="headerlink" title="实例学习：打包zepto"></a>实例学习：打包zepto</h2><blockquote>
+<p>一些东西说多了都是泪，直接先上实例吧，实例结束后再说其它的<br>首先在D盘新建一个项目（文件夹就好）<br>在里面新增两个文件（不要问为什么，搞进去先）</p>
+</blockquote>
+<p>① package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;demo&quot;,</div><div class="line">  &quot;file&quot;: &quot;zepto&quot;,</div><div class="line">  &quot;version&quot;: &quot;0.1.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;demo&quot;,</div><div class="line">  &quot;license&quot;: &quot;MIT&quot;,</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line">    &quot;grunt&quot;: &quot;~0.4.1&quot;,</div><div class="line">    &quot;grunt-contrib-jshint&quot;: &quot;~0.6.3&quot;,</div><div class="line">    &quot;grunt-contrib-uglify&quot;: &quot;~0.2.1&quot;,</div><div class="line">    &quot;grunt-contrib-requirejs&quot;: &quot;~0.4.1&quot;,</div><div class="line">    &quot;grunt-contrib-copy&quot;: &quot;~0.4.1&quot;,</div><div class="line">    &quot;grunt-contrib-clean&quot;: &quot;~0.5.0&quot;,</div><div class="line">    &quot;grunt-strip&quot;: &quot;~0.2.1&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;dependencies&quot;: &#123;</div><div class="line">    &quot;express&quot;: &quot;3.x&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>② Gruntfile.js<br>完了我们需要在grunt目录下执行 npm install将相关的文件下载下来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd d:</div><div class="line">$ cd grunt</div></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/i/294743/201403/112017579622449.png" alt=""></p>
+<p>然后我们的目录就会多一点东西：</p>
+<p><img src="http://images.cnitblog.com/i/294743/201403/112018246778586.png" alt=""></p>
+<p>多了很多东西，先别管事干什么的，我们后面都会用到，这个时候在目录下新建src文件夹，并且搞一个zepto进去</p>
+<p><img src="http://images.cnitblog.com/i/294743/201403/112019037591143.png" alt=""></p>
+<p>然后在Gruntfile中新增以下代码（先别管，增加再说）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  // 项目配置</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</div><div class="line">    uglify: &#123;</div><div class="line">      options: &#123;</div><div class="line">        banner: &apos;/*! &lt;%= pkg.file %&gt; &lt;%= grunt.template.today(&quot;yyyy-mm-dd&quot;) %&gt; */\n&apos;</div><div class="line">      &#125;,</div><div class="line">      build: &#123;</div><div class="line">        src: &apos;src/&lt;%=pkg.file %&gt;.js&apos;,</div><div class="line">        dest: &apos;dest/&lt;%= pkg.file %&gt;.min.js&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  // 加载提供&quot;uglify&quot;任务的插件</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</div><div class="line">  // 默认任务</div><div class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后运行 grunt命令后</p>
+<pre><code>grunt
+</code></pre><p><img src="http://images.cnitblog.com/i/294743/201403/112020055415469.png" alt=""></p>
+<p>嗯嗯，多了一个文件，并且是压缩的，不差！！！第一步结束</p>
+<h2 id="认识Gruntdile与package-json"><a href="#认识Gruntdile与package-json" class="headerlink" title="认识Gruntdile与package.json"></a>认识Gruntdile与package.json</h2><p>不出意外，每一个gurnt都会需要这两个文件，并且很可能就只有这两个文件（复杂的情况有所不同）</p>
+<ul>
+<li>package.json</li>
+</ul>
+<blockquote>
+<p>这个文件用来存储npm模块的依赖项（比如我们的打包若是依赖requireJS的插件，这里就需要配置）<br>然后，我们会在里面配置一些不一样的信息，比如我们上面的file，这些数据都会放到package中<br>对于package的灵活配置，我们会在后面提到</p>
+</blockquote>
+<ul>
+<li>Gruntfile</li>
+</ul>
+<p>这个文件尤其关键，他一般干两件事情：<br><br>① 读取package信息<br><br>② 插件加载、注册任务，运行任务（grunt对外的接口全部写在这里面）<br></p>
+<p>Gruntfile一般由四个部分组成<br><br>① 包装函数<br><br>这个包装函数没什么东西，意思就是我们所有的代码必须放到这个函数里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">//你的代码</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个不用知道为什么，直接将代码放入即可</p>
+<p>② 项目/任务配置<br>我们在Gruntfile一般第一个用到的就是initConfig方法配置依赖信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkg: grunt.file.readJSON(&apos;package.json&apos;)</div></pre></td></tr></table></figure>
+<p>这里的 grunt.file.readJSON就会将我们的配置文件读出，并且转换为json对象</p>
+<p>然后我们在后面的地方就可以采用pkg.XXX的方式访问其中的数据了<br>值得注意的是这里使用的是underscore模板引擎，所以你在这里可以写很多东西</p>
+<blockquote>
+<p>uglify是一个插件的，我们在package依赖项进行了配置，这个时候我们为系统配置了一个任务<br><br>uglify（压缩），他会干这几个事情：<br><br>① 在src中找到zepto进行压缩（具体名字在package中找到）<br><br>② 找到dest目录，没有就新建，然后将压缩文件搞进去<br><br>③ 在上面加几个描述语言<br><br>这个任务配置其实就是一个方法接口调用，按照规范来就好，暂时不予关注，内幕后期来<br><br>这里只是定义了相关参数，但是并未加载实际函数，所以后面马上就有一句：<br></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</div></pre></td></tr></table></figure>
+<p>用于加载相关插件</p>
+<p>最后注册一个自定义任务（其实也是默认任务），所以我们下面的命令行是等效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt == grunt uglify</div></pre></td></tr></table></figure>
+<p>至此，我们就简单解析了一番grunt的整个操作，下面来合并文件的例子</p>
+<h2 id="合并文件"><a href="#合并文件" class="headerlink" title="合并文件"></a>合并文件</h2><p>合并文件依赖于grunt-contrib-concat插件，所以我们的package依赖项要新增一项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&quot;devDependencies&quot;: &#123;</div><div class="line">  &quot;grunt&quot;: &quot;~0.4.1&quot;,</div><div class="line">  &quot;grunt-contrib-jshint&quot;: &quot;~0.6.3&quot;,</div><div class="line">  &quot;grunt-contrib-concat&quot;: &quot;~0.3.0&quot;,</div><div class="line">  &quot;grunt-contrib-uglify&quot;: &quot;~0.2.1&quot;,</div><div class="line">  &quot;grunt-contrib-requirejs&quot;: &quot;~0.4.1&quot;,</div><div class="line">  &quot;grunt-contrib-copy&quot;: &quot;~0.4.1&quot;,</div><div class="line">  &quot;grunt-contrib-clean&quot;: &quot;~0.5.0&quot;,</div><div class="line">  &quot;grunt-strip&quot;: &quot;~0.2.1&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>然后再将代码写成这个样子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  // 项目配置</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</div><div class="line">    concat: &#123;</div><div class="line">      options: &#123;</div><div class="line">        separator: &apos;;&apos;</div><div class="line">      &#125;,</div><div class="line">      dist: &#123;</div><div class="line">        src: [&apos;src/zepto.js&apos;, &apos;src/underscore.js&apos;, &apos;src/backbone.js&apos;],</div><div class="line">        dest: &apos;dest/libs.js&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</div><div class="line">  // 默认任务</div><div class="line">  grunt.registerTask(&apos;default&apos;, [&apos;concat&apos;]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行后，神奇的一幕发生了：<br><br><img src="http://images.cnitblog.com/i/294743/201403/112025532554110.png" alt=""><br><br>三个文件被压缩成了一个，但是没有压缩，所以，我们这里再加一步操作，将之压缩后再合并<br></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  // 项目配置</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</div><div class="line">    concat: &#123;</div><div class="line">      options: &#123;</div><div class="line">        separator: &apos;;&apos;</div><div class="line">      &#125;,</div><div class="line">      dist: &#123;</div><div class="line">        src: [&apos;src/zepto.js&apos;, &apos;src/underscore.js&apos;, &apos;src/backbone.js&apos;],</div><div class="line">        dest: &apos;dest/libs.js&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    uglify: &#123;</div><div class="line">      build: &#123;</div><div class="line">        src: &apos;dest/libs.js&apos;,</div><div class="line">        dest: &apos;dest/libs.min.js&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</div><div class="line">  // 默认任务</div><div class="line">  grunt.registerTask(&apos;default&apos;, [&apos;concat&apos;, &apos;uglify&apos;]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>我这里的做法是先合并形成一个libs，然后再将libs压缩成libs.min.js<br><br><br><img src="http://images.cnitblog.com/i/294743/201403/112027097063953.png" alt=""><br><br><br>所以我们这里换个做法，先压缩再合并，其实unglify已经干了这些事情了<br><br></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  // 项目配置</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</div><div class="line">    uglify: &#123;</div><div class="line">      &quot;my_target&quot;: &#123;</div><div class="line">        &quot;files&quot;: &#123;</div><div class="line">          &apos;dest/libs.min.js&apos;: [&apos;src/zepto.js&apos;, &apos;src/underscore.js&apos;, &apos;src/backbone.js&apos;]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</div><div class="line">  // 默认任务</div><div class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以，我们就暂时不去关注concat了</p>
+<p>最后，今天时间不早了，我们最后研究下grunt配合require于是便结束今天的学习吧</p>
+<h2 id="合并requireJS管理的文件"><a href="#合并requireJS管理的文件" class="headerlink" title="合并requireJS管理的文件"></a>合并requireJS管理的文件</h2><blockquote>
+<p>有了前面基础后，我们来干一件平时很头疼的事情，便是将require管理的所有js文件给压缩了合并为一个文件<br><br><br>首先我们建立一个简单的程序，里面使用了zepto、backbone、underscore（事实上我并未使用什么）<br><br><br><img src="http://images.cnitblog.com/i/294743/201403/112028067046139.png" alt=""><br><br><br>在main.js中新增代码：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">require.config(&#123;</div><div class="line"> baseUrl: &apos;&apos;,</div><div class="line"> shim: &#123;</div><div class="line">  $: &#123;</div><div class="line">      exports: &apos;zepto&apos;</div><div class="line">  &#125;,</div><div class="line">  _: &#123;</div><div class="line">   exports: &apos;_&apos;</div><div class="line">  &#125;,</div><div class="line">  B: &#123;</div><div class="line">   deps: [</div><div class="line">    &apos;_&apos;,</div><div class="line">    &apos;$&apos;</div><div class="line">     ],</div><div class="line">   exports: &apos;Backbone&apos;</div><div class="line">  &#125;</div><div class="line"> &#125;,</div><div class="line"> paths: &#123;</div><div class="line">  &apos;$&apos;: &apos;src/zepto&apos;,</div><div class="line">  &apos;_&apos;: &apos;src/underscore&apos;,</div><div class="line">  &apos;B&apos;: &apos;src/backbone&apos;</div><div class="line"> &#125;</div><div class="line">&#125;);</div><div class="line">requirejs([&apos;B&apos;], function (b) &#123;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这样的话运行会自动加载几个文件，我们现在希望将之合并为一个libs.js该怎么干呢？？？</p>
+<p>我们这里使用自定义任务方法来做，因为我们好像没有介绍他</p>
+<p>要使用requireJS相关需要插件     </p>
+<pre><code>grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);
+</code></pre><p>因为我们以后可能存在配置文件存在各个项目文件的情况，所以我们这里将requireJs相关的配置放入gruntCfg.json中</p>
+<p>这样我们的package.json就没有什么实际意义了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;demo&quot;,</div><div class="line">  &quot;version&quot;: &quot;0.1.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;demo&quot;,</div><div class="line">  &quot;license&quot;: &quot;MIT&quot;,</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line"> &quot;grunt&quot;: &quot;~0.4.1&quot;,</div><div class="line"> &quot;grunt-contrib-jshint&quot;: &quot;~0.6.3&quot;,</div><div class="line"> &quot;grunt-contrib-concat&quot;: &quot;~0.3.0&quot;,</div><div class="line"> &quot;grunt-contrib-uglify&quot;: &quot;~0.2.1&quot;,</div><div class="line"> &quot;grunt-contrib-requirejs&quot;: &quot;~0.4.1&quot;,</div><div class="line"> &quot;grunt-contrib-copy&quot;: &quot;~0.4.1&quot;,</div><div class="line"> &quot;grunt-contrib-clean&quot;: &quot;~0.5.0&quot;,</div><div class="line"> &quot;grunt-strip&quot;: &quot;~0.2.1&quot;</div><div class="line"> </div><div class="line">  &#125;,</div><div class="line">  &quot;dependencies&quot;: &#123;</div><div class="line">    &quot;express&quot;: &quot;3.x&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们这里设置的require相关的grunt配置文件如下（gruntCfg.json）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;requirejs&quot;: &#123;</div><div class="line">    &quot;main&quot;: &#123;</div><div class="line">      &quot;options&quot;: &#123;</div><div class="line">        &quot;baseUrl&quot;: &quot;&quot;,</div><div class="line">        &quot;paths&quot;: &#123;</div><div class="line">          &quot;$&quot;: &quot;src/zepto&quot;,</div><div class="line">          &quot;_&quot;: &quot;src/underscore&quot;,</div><div class="line">          &quot;B&quot;: &quot;src/backbone&quot;,</div><div class="line">          &quot;Test&quot;: &quot;src/Test&quot;</div><div class="line">        &#125;,</div><div class="line">        &quot;web&quot;: &#123;</div><div class="line">          &quot;include&quot;: [</div><div class="line">            &quot;$&quot;,</div><div class="line">            &quot;_&quot;,</div><div class="line">            &quot;B&quot;,</div><div class="line">            &quot;Test&quot;</div><div class="line">          ],</div><div class="line">          &quot;out&quot;: &quot;dest/libs.js&quot;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里我们要打包这些文件搞到dest的libs.js文件中，这个文件照做就行，最后核心代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line">  //为了介绍自定义任务搞了一个这个</div><div class="line">  grunt.registerTask(&apos;build&apos;, &apos;require demo&apos;, function () &#123;</div><div class="line">    //任务列表</div><div class="line">    var tasks = [&apos;requirejs&apos;];</div><div class="line">    //源码文件</div><div class="line">    var srcDir = &apos;src&apos;;</div><div class="line">    //目标文件</div><div class="line">    var destDir = &apos;dest&apos;;</div><div class="line">    //设置参数</div><div class="line">    grunt.config.set(&apos;config&apos;, &#123;</div><div class="line">      srcDir: srcDir,</div><div class="line">      destDir: destDir</div><div class="line">    &#125;);</div><div class="line">    //设置requireJs的信息</div><div class="line">    var taskCfg = grunt.file.readJSON(&apos;gruntCfg.json&apos;);</div><div class="line">    var options = taskCfg.requirejs.main.options,</div><div class="line">        platformCfg = options.web,</div><div class="line">        includes = platformCfg.include,</div><div class="line">        paths = options.paths;</div><div class="line">    var pos = -1;</div><div class="line">    var requireTask = taskCfg.requirejs;</div><div class="line">    options.path = paths;</div><div class="line">    options.out = platformCfg.out;</div><div class="line">    options.include = includes;</div><div class="line">    //运行任务</div><div class="line">    grunt.task.run(tasks);</div><div class="line">    grunt.config.set(&quot;requirejs&quot;, requireTask);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>搞完了运行就好：grunt build</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt build</div></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/i/294743/201403/112029548774259.png" alt=""></p>
+<p>最后发现叶小钗三字，我就放心了，安全！！！！！！</p>
+<p>##配置任务/grunt.initConfig</p>
+<p>前面我们简单的介绍了grunt相关的知识，这里我们这里还需要再熟悉下Gruntfile相关的知识点，比如说配置任务</p>
+<p>grunt的任务配置都是在Gruntfile中的grunt.initConfig方法中指定的，这个配置主要都是一些命名性属性<br>比如我们上次用到的合并以及压缩的任务配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">grunt.initConfig(&#123;</div><div class="line">    concat: &#123;</div><div class="line">        //这里是concat任务的配置信息</div><div class="line">    &#125;,</div><div class="line">    uglify: &#123;</div><div class="line">        //这里是uglify任务的配置信息</div><div class="line">    &#125;,</div><div class="line">    //任意非任务特定属性</div><div class="line">    my_property: &apos;whatever&apos;,</div><div class="line">    my_src_file: [&apos;foo/*.js&apos;, &apos;bar/*.js&apos;]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中的my_property完全可能读取外部json配置文件，然后在上面任务配置中便可以，比如我们要压缩的文件为准或者最后要放到哪里，便可以在此配置</p>
+<p>我们使用grunt的时候，主要工作就是配置任务或者创建任务，实际上就是做一个事件注册，然后由我们触发之，所以grunt的核心还是事件注册<br>每次运行grunt时，我们可以指定运行一个或者多个任务，通过任务决定要做什么，比如我们同时要压缩和合并还要做代码检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt.registerTask(&apos;default&apos;, [&apos;jshint&apos;,&apos;qunit&apos;,&apos;concat&apos;,&apos;uglify&apos;]);</div></pre></td></tr></table></figure></p>
+<p>当运行一个基本任务时，grunt并不会查找配置和检查运行环境，他仅仅运行指定的任务函数，可以传递冒号分割参数，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">grunt.registerTask(&apos;foo&apos;, &apos;A sample task that logs stuff.&apos;, function (arg1, arg2) &#123;</div><div class="line">  if (arguments.length === 0) &#123;</div><div class="line">    grunt.log.writeln(this.name + &quot;, no args&quot;);</div><div class="line">  &#125; else &#123;</div><div class="line">    grunt.log.writeln(this.name + &quot;, &quot; + arg1 + &quot; &quot; + arg2);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ grunt foo:testing:123</div><div class="line">Running &quot;foo:testing:123&quot; (foo) task</div><div class="line">foo, testing 123</div><div class="line"></div><div class="line">$ grunt foo:testing</div><div class="line">Running &quot;foo:testing&quot; (foo) task</div><div class="line">foo, testing undefined</div><div class="line"></div><div class="line">$ grunt foo</div><div class="line">Running &quot;foo&quot; task</div><div class="line">foo, no args</div></pre></td></tr></table></figure>
+<p>这里有个多任务的情况，就是一个任务里面实际上第一了多个东东，这个时候就有所不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">grunt.initConfig(&#123;</div><div class="line">    log: &#123;</div><div class="line">        demo01: [1,2,3],</div><div class="line">        demo02: &apos;hello world&apos;,</div><div class="line">        demo03: false</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">grunt.registerTask(&apos;log&apos;,&apos;log stuff.&apos;, function()&#123;</div><div class="line">    grunt.log.writeln(this.target + &apos;: &apos; + this.data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如果我们运行，运行情况如下：</p>
+<p>???????</p>
+<p>更多时候，我们实际场景中都会需要自定义任务，而在我们任务内部使用 grunt.task.run({}) 运行任务<br>这块的知识点，我们后面以实际例子说明</p>
+<h2 id="grunt插件"><a href="#grunt插件" class="headerlink" title="grunt插件"></a>grunt插件</h2><p>学习grunt主要就是学习grunt的插件使用，所以我们今天先来学习常用的几个插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt-contrib-unglify</div></pre></td></tr></table></figure>
+<p>我们仍然以简单例子学习</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    uglify: &#123;</div><div class="line">      my_target: &#123;</div><div class="line">        files: &#123;</div><div class="line">          &apos;dest/libs.min.js&apos;: [&apos;src/zepto.js&apos;, &apos;src/underscoce.js&apos;]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样会将src里面的zepto等文件打包值dest的lib.min.js中</p>
+<p><strong>压缩一个文件夹的所有文件</strong></p>
+<p>然后这段代码非常有意思，他会将一个文件目录里面的所有js文件打包到另一个文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    uglify: &#123;</div><div class="line">      my_target: &#123;</div><div class="line">        files: [&#123;</div><div class="line">          expand: true,</div><div class="line">          cwd: &apos;src&apos;,</div><div class="line">          src: &apos;**/*.js&apos;,</div><div class="line">          dest: &apos;dest&apos;</div><div class="line">        &#125;]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/i/294743/201403/151430462467839.png" alt=""></p>
+<p>若是你希望给你文件的头部加一段注释性语言配置banner信息即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">grunt.initConfig(&#123;</div><div class="line">  pkg: grunt.file.readJSON(&apos;package.json&apos;),</div><div class="line">  uglify: &#123;</div><div class="line">    options: &#123;</div><div class="line">      banner: &apos;/*! 注释信息 */&apos;</div><div class="line">    &#125;,</div><div class="line">    my_target: &#123;</div><div class="line">      files: &#123;</div><div class="line">        &apos;dest/output.min.js&apos;: [&apos;src/input.js&apos;]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt-contrib-concat</div></pre></td></tr></table></figure>
+<blockquote>
+<p>该插件主要用于代码合并，将多个文件合并为一个，我们前面的uglify也提供了一定合并的功能<br>在可选属性中我们可以设置以下属性：<br><br>① separator 用于分割各个文件的文字，<br><br>② banner 前面说到的文件头注释信息，只会出现一次<br><br>③ footer 文件尾信息，只会出现一次<br><br>④ stripBanners去掉源代码注释信息（只会清楚/**/这种注释）<br></p>
+</blockquote>
+<p>一个简单的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">  concat: &#123;</div><div class="line">    options: &#123;</div><div class="line">      separator: &apos;/*分割*/&apos;,</div><div class="line">      banner: &apos;/*测试*/&apos;,</div><div class="line">      footer: &apos;/*footer*/&apos;</div><div class="line">     </div><div class="line">    &#125;,</div><div class="line">    dist: &#123;</div><div class="line">      src: [&apos;src/zepto.js&apos;, &apos;src/underscore.js&apos;, &apos;src/backbone.js&apos;],</div><div class="line">      dest: &apos;dist/built.js&apos;,</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>合并三个文件为一个，这种在我们源码调试时候很有意义</p>
+<p><strong>构建两个文件夹</strong></p>
+<p>有时候我们可能需要将合并的代码放到不同的文件，这个时候可以这样干<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    concat: &#123;</div><div class="line">      basic: &#123;</div><div class="line">        src: [&apos;src/zepto.js&apos;],</div><div class="line">        dest: &apos;dest/basic.js&apos;</div><div class="line">      &#125;,</div><div class="line">      extras: &#123;</div><div class="line">        src: [&apos;src/underscore.js&apos;, &apos;src/backbone.js&apos;],</div><div class="line">        dest: &apos;dest/with_extras.js&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种功能还有这样的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    concat: &#123;</div><div class="line">      basic_and_extras: &#123;</div><div class="line">        files: &#123;</div><div class="line">          &apos;dist/basic.js&apos;: [&apos;src/test.js&apos;, &apos;src/zepto.js&apos;],</div><div class="line">          &apos;dist/with_extras.js&apos;: [&apos;src/underscore.js&apos;, &apos;src/backbone.js&apos;]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二种写法便于使用配置文件，具体各位选取吧，至于读取配置文件的东西我们这里就先不关注了</p>
+<pre><code>grunt-contrib-jshint
+</code></pre><p>该插件用于检测文件中的js语法问题，比如我test.js是这样写的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(&apos;我是叶小钗&apos;)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    jshint: &#123; </div><div class="line">      all: [&apos;src/test.js&apos;]</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-jshint&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ grunt jshint</div><div class="line">Running &quot;jshint:all&quot; (jshint) task</div><div class="line">Linting src/test.js ...ERROR</div><div class="line">[L1:C15] W033: Missing semicolon.</div><div class="line">alert(&apos;我是叶小钗&apos;)</div></pre></td></tr></table></figure>
+<p>说我缺少一个分号，好像确实缺少…..如果在里面写明显的BUG的话会报错<br>多数时候，我们认为没有分号无伤大雅，所以，我们文件会忽略这个错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jshint: &#123;</div><div class="line">  options: &#123;</div><div class="line">    &apos;-W033&apos;: true</div><div class="line">  &#125;,</div><div class="line">  all: [&apos;src/test.js&apos;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里有一个稍微复杂的应用，就是我们合并之前做一次检查，合并之后再做一次检查，我们可以这样写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    concat: &#123;</div><div class="line">      dist: &#123;</div><div class="line">        src: [&apos;src/test01.js&apos;, &apos;src/test02.js&apos;],</div><div class="line">        dest: &apos;dist/output.js&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    jshint: &#123;</div><div class="line">      options: &#123;</div><div class="line">        &apos;-W033&apos;: true </div><div class="line">      &#125;,</div><div class="line">      pre: [&apos;src/test01.js&apos;, &apos;src/test02.js&apos;],</div><div class="line">      after: [&apos;dist/output.js&apos;]</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-jshint&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ grunt jshint:pre concat jshint:after</div><div class="line">Running &quot;jshint:pre&quot; (jshint) task</div><div class="line">&gt;&gt; 2 files lint free.</div><div class="line">Running &quot;concat:dist&quot; (concat) task</div><div class="line">File &quot;dist/output.js&quot; created.</div><div class="line">Running &quot;jshint:after&quot; (jshint) task</div><div class="line">&gt;&gt; 1 file lint free.</div></pre></td></tr></table></figure>
+<p>这里连续运行了三个任务，先做检查再合并，然后做检测，我这里写了两个简单的文件，如果将jquery搞进去的话，好像还出了不少BUG……<br>所以真的要用它还要自定一些规范，我们这里暂时到这里，先进入下一个插件学习</p>
+<pre><code>grunt-contrib-requirejs
+</code></pre><p>我们的grunt打包程序极有可能与requirejs一起使用，但是几个插件学习下来又属requireJs的使用最为麻烦，因为网上资源很少，搞到这一段耗掉了我很多精力</p>
+<p>这个时候你就会感叹，英语好不一定编程好，英语差想成为高手还是不简单啊！！！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">requirejs: &#123;</div><div class="line">  compile: &#123;</div><div class="line">    options: &#123;</div><div class="line">      baseUrl: &quot;path/to/base&quot;,</div><div class="line">      mainConfigFile: &quot;path/to/config.js&quot;,</div><div class="line">      name: &quot;path/to/almond&quot;, // assumes a production build using almond</div><div class="line">      out: &quot;path/to/optimized.js&quot;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>官方的例子首先就是这几个属性：</p>
+<p>baseUrl 代表所有的js文件都会相对于这个目录<br></p>
+<p>mainConfigFile 配置文件目录<br></p>
+<p>name ？？？<br></p>
+<p>out 输出文件<br></p>
+<p>一些参数我们不太了解，这个时候就只能以例子破之了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    requirejs: &#123;</div><div class="line">      compile: &#123;</div><div class="line">        &quot;options&quot;: &#123;</div><div class="line">          &quot;baseUrl&quot;: &quot;./&quot;,</div><div class="line">          &quot;paths&quot;: &#123;</div><div class="line">            &quot;$&quot;: &quot;src/zepto&quot;,</div><div class="line">            &quot;_&quot;: &quot;src/underscore&quot;,</div><div class="line">            &quot;B&quot;: &quot;src/backbone&quot;,</div><div class="line">            &quot;Test&quot;: &quot;src/Test01&quot;</div><div class="line">          &#125;,</div><div class="line">          &quot;include&quot;: [</div><div class="line">            &quot;$&quot;,</div><div class="line">            &quot;_&quot;,</div><div class="line">            &quot;B&quot;,</div><div class="line">            &quot;Test&quot;</div><div class="line">          ],</div><div class="line">          &quot;out&quot;: &quot;dest/libs.js&quot;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/i/294743/201403/151512568713886.png" alt=""></p>
+<p>这样配置后，会将include里面的文件打包为out对应的文件，paths的本身意义不大，就是用于配置include里面的指向</p>
+<p>这个时候我们来加个name看看有神马作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    requirejs: &#123;</div><div class="line">      compile: &#123;</div><div class="line">        &quot;options&quot;: &#123;</div><div class="line">          &quot;baseUrl&quot;: &quot;./&quot;,</div><div class="line">          &quot;name&quot;: &apos;src/test02.js&apos;,</div><div class="line">          &quot;paths&quot;: &#123;</div><div class="line">            &quot;$&quot;: &quot;src/zepto&quot;,</div><div class="line">            &quot;_&quot;: &quot;src/underscore&quot;,</div><div class="line">            &quot;B&quot;: &quot;src/backbone&quot;,</div><div class="line">            &quot;Test&quot;: &quot;src/Test01&quot;</div><div class="line">          &#125;,</div><div class="line">          &quot;include&quot;: [</div><div class="line">            &quot;$&quot;,</div><div class="line">            &quot;_&quot;,</div><div class="line">            &quot;B&quot;,</div><div class="line">            &quot;Test&quot;</div><div class="line">          ],</div><div class="line">          &quot;out&quot;: &quot;dest/libs.js&quot;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后，这里我们便不是有initConfig的做法了，直接使用自定义任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line"></div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line"></div><div class="line">  grunt.registerTask(&apos;build&apos;, &apos;require demo&apos;, function () &#123;</div><div class="line"></div><div class="line">    //第一步，读取配置信息</div><div class="line">    var cfg = grunt.file.readJSON(&apos;cfg.json&apos;);</div><div class="line">    cfg = cfg.requirejs;</div><div class="line">    grunt.config.set(&apos;requirejs&apos;, &#123; test: cfg &#125;);</div><div class="line"></div><div class="line">    //第二步，设置参数</div><div class="line">    grunt.log.debug(&apos;参数：&apos; + JSON.stringify(grunt.config()));</div><div class="line"></div><div class="line">    //第三步跑任务</div><div class="line">    grunt.task.run([&apos;requirejs&apos;]);</div><div class="line">    </div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ grunt build --debug</div><div class="line">Running &quot;build&quot; task</div><div class="line">[D] Task source: d:\grunt\Gruntfile.js</div><div class="line">[D] 参数：&#123;&quot;requirejs&quot;:&#123;&quot;test&quot;:&#123;&quot;options&quot;:&#123;&quot;baseUrl&quot;:&quot;./&quot;,&quot;paths&quot;:&#123;&quot;$&quot;:&quot;src/zept</div><div class="line">o&quot;,&quot;_&quot;:&quot;src/underscore&quot;,&quot;B&quot;:&quot;src/backbone&quot;,&quot;Test&quot;:&quot;src/Test01&quot;&#125;,&quot;include&quot;:[&quot;$&quot;,&quot;</div><div class="line">_&quot;,&quot;B&quot;,&quot;Test&quot;],&quot;out&quot;:&quot;dest/libs.js&quot;&#125;&#125;&#125;&#125;</div><div class="line"></div><div class="line">Running &quot;requirejs:test&quot; (requirejs) task</div><div class="line">[D] Task source: d:\grunt\node_modules\grunt-contrib-requirejs\tasks\requirejs.j</div><div class="line">s</div><div class="line">&gt;&gt; Tracing dependencies for: d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; Uglifying file: d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; ----------------</div><div class="line">&gt;&gt; d:/grunt/src/zepto.js</div><div class="line">&gt;&gt; d:/grunt/src/underscore.js</div><div class="line">&gt;&gt; d:/grunt/src/backbone.js</div><div class="line">&gt;&gt; d:/grunt/src/Test01.js</div></pre></td></tr></table></figure></p>
+<p>效果还是有的，最后我们介绍下requireJS打包模板文件</p>
+<p>##require与模板文件</p>
+<blockquote>
+<p>我们知道，模板文件一般都是html，比如我们这里的demo01.html，对于这个文件我们应该怎么打包呢？其实很简单……<br>需要干两件事情：<br><br>① 引入require.text<br><br>② 加入模板文件<br></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;requirejs&quot;: &#123;</div><div class="line">    &quot;options&quot;: &#123;</div><div class="line">      &quot;baseUrl&quot;: &quot;./&quot;,</div><div class="line">      &quot;paths&quot;: &#123;</div><div class="line">        &quot;$&quot;: &quot;src/zepto&quot;,</div><div class="line">        &quot;_&quot;: &quot;src/underscore&quot;,</div><div class="line">        &quot;B&quot;: &quot;src/backbone&quot;,</div><div class="line">        &quot;test&quot;: &quot;src/test01&quot;,</div><div class="line">        &quot;text&quot;: &quot;src/require.text&quot;</div><div class="line"></div><div class="line">      &#125;,</div><div class="line">      &quot;include&quot;: [</div><div class="line">        &quot;$&quot;,</div><div class="line">        &quot;_&quot;,</div><div class="line">        &quot;B&quot;,</div><div class="line">        &quot;test&quot;,</div><div class="line">        &quot;text!src/demo01.html&quot;</div><div class="line">      ],</div><div class="line">      &quot;out&quot;: &quot;dest/libs.js&quot;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>于是，我们便成功将模板打入了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$ grunt build --debug</div><div class="line">Running &quot;build&quot; task</div><div class="line">[D] Task source: d:\grunt\Gruntfile.js</div><div class="line">[D] 参数：&#123;&quot;requirejs&quot;:&#123;&quot;test&quot;:&#123;&quot;options&quot;:&#123;&quot;baseUrl&quot;:&quot;./&quot;,&quot;paths&quot;:&#123;&quot;$&quot;:&quot;src/zept</div><div class="line">o&quot;,&quot;_&quot;:&quot;src/underscore&quot;,&quot;B&quot;:&quot;src/backbone&quot;,&quot;test&quot;:&quot;src/test01&quot;,&quot;text&quot;:&quot;src/requi</div><div class="line">re.text&quot;&#125;,&quot;include&quot;:[&quot;$&quot;,&quot;_&quot;,&quot;B&quot;,&quot;test&quot;,&quot;text!src/demo01.html&quot;],&quot;out&quot;:&quot;dest/libs</div><div class="line">.js&quot;&#125;&#125;&#125;&#125;</div><div class="line"></div><div class="line">Running &quot;requirejs:test&quot; (requirejs) task</div><div class="line">[D] Task source: d:\grunt\node_modules\grunt-contrib-requirejs\tasks\requirejs.j</div><div class="line">s</div><div class="line">&gt;&gt; Tracing dependencies for: d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; Uglifying file: d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; ----------------</div><div class="line">&gt;&gt; d:/grunt/src/zepto.js</div><div class="line">&gt;&gt; d:/grunt/src/underscore.js</div><div class="line">&gt;&gt; d:/grunt/src/backbone.js</div><div class="line">&gt;&gt; d:/grunt/src/test01.js</div><div class="line">&gt;&gt; d:/grunt/src/require.text.js</div><div class="line">&gt;&gt; text!src/demo01.html</div></pre></td></tr></table></figure>
+<p>在文件中我们引用方式是：</p>
+<pre><code>&quot;text!src/demo01.html&quot; =&gt; &apos;具体文件&apos;
+
+过滤关键字
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    requirejs: &#123;</div><div class="line">      compile: &#123;</div><div class="line">        &quot;options&quot;: &#123;</div><div class="line">          optimize: &apos;uglify2&apos;,</div><div class="line">          uglify2: &#123;</div><div class="line">            mangle: &#123;</div><div class="line">              except: [&quot;$super&quot;]</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          &quot;baseUrl&quot;: &quot;./&quot;,</div><div class="line">          &quot;paths&quot;: &#123;</div><div class="line">            &quot;UIAbstractView&quot;: &quot;ui_beta/ui.abstract.view&quot;,</div><div class="line">            &quot;UILayer&quot;: &quot;ui_beta/ui.layer&quot;</div><div class="line">          &#125;,</div><div class="line">          &quot;include&quot;: [</div><div class="line">            &quot;UIAbstractView&quot;</div><div class="line">          ],</div><div class="line">          &quot;out&quot;: &quot;dest/libs.js&quot;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line">  grunt.registerTask(&apos;default&apos;, [&apos;requirejs&apos;]);</div></pre></td></tr></table></figure>
+<p>##打包样式文件</p>
+<p>样式文件的打包方式与js不太一样，这里我们下载css-min插件，并且在package.json中新增依赖项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;demo&quot;,</div><div class="line">  &quot;version&quot;:         &quot;0.1.0&quot;,</div><div class="line">  &quot;description&quot;:     &quot;demo&quot;,</div><div class="line">  &quot;license&quot;:         &quot;MIT&quot;,</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line">    &quot;grunt&quot;:                   &quot;~0.4.1&quot;,</div><div class="line">    &quot;grunt-contrib-jshint&quot;:    &quot;~0.6.3&quot;,</div><div class="line">    &quot;grunt-contrib-concat&quot;:    &quot;~0.3.0&quot;,</div><div class="line">    &quot;grunt-contrib-uglify&quot;:    &quot;~0.2.1&quot;,</div><div class="line">    &quot;grunt-contrib-requirejs&quot;: &quot;~0.4.1&quot;,</div><div class="line">    &quot;grunt-contrib-copy&quot;:      &quot;~0.4.1&quot;,</div><div class="line">    &quot;grunt-contrib-clean&quot;:     &quot;~0.5.0&quot;,</div><div class="line">    &quot;grunt-strip&quot;:             &quot;~0.2.1&quot;,</div><div class="line">    &quot;grunt-contrib-watch&quot;: &quot;~0.6.0&quot;,</div><div class="line">    &quot;grunt-contrib-cssmin&quot;: &quot;~0.5.0&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;dependencies&quot;:    &#123;</div><div class="line">    &quot;express&quot;: &quot;3.x&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line">  grunt.initConfig(&#123;</div><div class="line">    cssmin: &#123;</div><div class="line">      compress: &#123;</div><div class="line">        files: &#123;</div><div class="line">          &apos;dest/car.min.css&apos;: [</div><div class="line">          &quot;src/car.css&quot;,</div><div class="line">          &quot;src/car01.css&quot;</div><div class="line">        ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-cssmin&apos;);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如此一来我们便可以压缩合并CSS文件了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">	$ grunt cssmin --debug</div><div class="line">	Running &quot;cssmin:compress&quot; (cssmin) task</div><div class="line">	[D] Task source: d:\grunt\node_modules\grunt-contrib-cssmin\tasks\cssmin.js</div><div class="line">	File dest/car.min.css created.	</div><div class="line">```	</div><div class="line">##移动打包文件</div><div class="line"></div><div class="line">&gt;其实，grunt本身具有这样的功能，但是我们实际项目重会出现这种可能：&lt;br /&gt;</div><div class="line">我们核心框架会有一套压缩代码，并且会在对应目录生成文件用于发布，但是这个地方的权限对各个频道团队是不可见的&lt;br /&gt;</div><div class="line">所以，我们在各个频道的公共文件夹内应该将刚刚的文件给复制过去，这块代码其实很简单，不需要任何新知识都能实现：&lt;br /&gt;</div><div class="line">我们这里依旧采用昨天的require相关的代码，但是一有个不同的地方就是，我们要同时在D盘的common文件夹中生成该文件&lt;br /&gt;</div><div class="line">这个代码其实比较简单，这里我们先介绍一个新的插件copy&lt;br /&gt;</div><div class="line"></div><div class="line">	grunt-contrib-copy</div><div class="line">	</div><div class="line">该插件用于复制文件到你想要的文件夹处</div></pre></td></tr></table></figure>
+<pre><code>grunt.initConfig({ copy: {
+  main: {
+    flatten: true,
+    src: &apos;src/*.js&apos;,
+    dest: &apos;dest/&apos;
+  }
+}
+});
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这段代码就会将src中的js文件搞到dest里面，并且新建src文件夹：</div><div class="line">	</div><div class="line">```	</div><div class="line">	$ grunt copy</div><div class="line">	Running &quot;copy:main&quot; (copy) task</div><div class="line">	Copied 7 files</div></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/i/294743/201403/161354551832280.png" alt=""></p>
+<p>若是不想复制文件夹只要文件应该这样干：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">grunt.initConfig(&#123; copy: &#123;</div><div class="line">  main: &#123;</div><div class="line">    flatten: true,</div><div class="line">    //    filter: &apos;isFile&apos;,</div><div class="line">    expand: true,</div><div class="line">    src: &apos;src/**.js&apos;,</div><div class="line">    dest: &apos;dest/&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这块完了，我们就来移动打包文件至D盘了</p>
+<p><strong>移动打包文件</strong></p>
+<p>这个时候代码这样写就好（也许移动前我们还想将其文件夹里面的东西销毁，暂时不考虑了）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line"></div><div class="line">  grunt.initConfig(&#123; copy: &#123;</div><div class="line">    main: &#123;</div><div class="line">      //      flatten: true,</div><div class="line">      //      expand: true,</div><div class="line">      src: &apos;dest/**.js&apos;,</div><div class="line">      dest: &apos;d:/common/&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-copy&apos;);</div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line"></div><div class="line">  grunt.registerTask(&apos;build&apos;, &apos;require demo&apos;, function () &#123;</div><div class="line"></div><div class="line">    //第一步，读取配置信息</div><div class="line">    var cfg = grunt.file.readJSON(&apos;cfg.json&apos;);</div><div class="line">    cfg = cfg.requirejs;</div><div class="line">    grunt.config.set(&apos;requirejs&apos;, &#123; test: cfg &#125;);</div><div class="line"></div><div class="line">    //第二步，设置参数</div><div class="line">    grunt.log.debug(&apos;参数：&apos; + JSON.stringify(grunt.config()));</div><div class="line"></div><div class="line">    //第三步跑任务</div><div class="line">    grunt.task.run([&apos;requirejs&apos;]);</div><div class="line"></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  grunt.registerTask(&apos;default&apos;, &apos;test demo&apos;, [&apos;build&apos;, &apos;copy&apos;]);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Running &quot;build&quot; task</div><div class="line"></div><div class="line">Running &quot;requirejs:test&quot; (requirejs) task</div><div class="line">&gt;&gt; Tracing dependencies for: d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; Uglifying file: d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; d:/grunt/dest/libs.js</div><div class="line">&gt;&gt; ----------------</div><div class="line">&gt;&gt; d:/grunt/src/zepto.js</div><div class="line">&gt;&gt; d:/grunt/src/underscore.js</div><div class="line">&gt;&gt; d:/grunt/src/backbone.js</div><div class="line">&gt;&gt; d:/grunt/src/test01.js</div><div class="line">&gt;&gt; d:/grunt/src/require.text.js</div><div class="line">&gt;&gt; text!src/demo01.html</div><div class="line"></div><div class="line">Running &quot;copy:main&quot; (copy) task</div><div class="line">Copied 8 files</div></pre></td></tr></table></figure></p>
+<p><img src="http://images.cnitblog.com/i/294743/201403/161405554656860.png" alt=""></p>
+<p>关于移动相关的知识点暂时介绍到这里，我们进入下一话题</p>
+<p>##分支/频道处理</p>
+<blockquote>
+<p>我们在实际项目重会遇到这种情况，我们一个主干分支上可能拉出很多分支完成不同的功能，而各个分支就有那么一点点不同，那么这个时候打包工具该怎么办呢？<br><br>我们一般是这样处理的：<br><br>① 首先全局只会有一个打包工具<br><br>② 其次每一个分支都会有一个gruntCfg.json的配置文件，存储相关的打包信息<br><br>③ 每次打包时候便把响应的分支打印到各自的dest目录里面<br><br>为了模拟这一情况我们将grunt打包相关的文件放到D盘的grunt目录里面，并在D盘新建gruntDemo目录<br><br>然后我们在gruntDemo中建立一个项目，并且为这个项目拉一个分支，比如现在项目是地demo01与demo02<br><br>现在文件结构如下：<br></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">D:\GRUNTDEMO</div><div class="line">├─demo01</div><div class="line">│  │  gruntCfg.json</div><div class="line">│  │</div><div class="line">│  └─src</div><div class="line">│          backbone.js</div><div class="line">│          require.js</div><div class="line">│          require.text.js</div><div class="line">│          test01.js</div><div class="line">│          test02.js</div><div class="line">│          underscore.js</div><div class="line">│          zepto.js</div><div class="line">│</div><div class="line">└─demo02</div><div class="line">    │  gruntCfg.json</div><div class="line">    │</div><div class="line">    └─src</div><div class="line">            backbone.js</div><div class="line">            require.js</div><div class="line">            require.text.js</div><div class="line">            test01.js</div><div class="line">            test02.js</div><div class="line">            underscore.js</div><div class="line">            zepto.js</div></pre></td></tr></table></figure>
+<p>这个时候，要实现功能最好的方法就是写自定义任务了，其它方案不好使，这个时候起配置文件也需要有一定修改，比如其中的路径需要加入参数信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;requirejs&quot;: &#123;</div><div class="line">    &quot;options&quot;: &#123;</div><div class="line">      &quot;baseUrl&quot;: &quot;&lt;%= config.srcDir %&gt;&quot;,</div><div class="line">      &quot;paths&quot;: &#123;</div><div class="line">        &quot;$&quot;: &quot;src/zepto&quot;,</div><div class="line">        &quot;_&quot;: &quot;src/underscore&quot;,</div><div class="line">        &quot;B&quot;: &quot;src/backbone&quot;,</div><div class="line">        &quot;test&quot;: &quot;src/test01&quot;,</div><div class="line">        &quot;text&quot;: &quot;src/require.text&quot;</div><div class="line"></div><div class="line">      &#125;,</div><div class="line">      &quot;include&quot;: [</div><div class="line">        &quot;$&quot;,</div><div class="line">        &quot;_&quot;,</div><div class="line">        &quot;B&quot;,</div><div class="line">        &quot;test&quot;,</div><div class="line">        &quot;text!src/demo01.html&quot;</div><div class="line">        ],</div><div class="line">        &quot;out&quot;: &quot;&lt;%= config.destDir %&gt;/libs.js&quot;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个时候initConfig相关信息时候，首先得传入path依赖的文件目录，以及输出的文件目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line"></div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line"></div><div class="line">  //channel为频道名称，project为项目名称，这里对应gruntDemo，branch为其分支，默认与grunt目录为平行关系，佛则package.json里面应该有配置信息</div><div class="line">  grunt.registerTask(&apos;build&apos;, &apos;require demo&apos;, function (channel, project, branch) &#123;</div><div class="line"></div><div class="line">    var path = &apos;../&apos; + channel + &apos;/&apos; + project + branch;</div><div class="line">    grunt.log.debug(&apos;path: &apos; + path);</div><div class="line"></div><div class="line">    //第一步，读取配置信息</div><div class="line">    var cfg = grunt.file.readJSON(path + &apos;/gruntCfg.json&apos;);</div><div class="line">    cfg = cfg.requirejs;</div><div class="line"></div><div class="line">    grunt.config.set(&apos;config&apos;, &#123;</div><div class="line">      srcDir: path,</div><div class="line">      destDir: path + &apos;/dest&apos;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    grunt.config.set(&apos;requirejs&apos;, &#123; main: cfg &#125;);</div><div class="line"></div><div class="line">    //第二步，设置参数</div><div class="line">    grunt.log.debug(&apos;param: &apos; + JSON.stringify(grunt.config()));</div><div class="line"></div><div class="line">    //第三步跑任务</div><div class="line">    grunt.task.run([&apos;requirejs&apos;]);</div><div class="line"></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  grunt.registerTask(&apos;default&apos;, &apos;test demo&apos;, [&apos;build&apos;, &apos;copy&apos;]);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>于是我们第一步工作成功了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ grunt build:gruntDemo:demo:02 --debug</div><div class="line">Running &quot;build:gruntDemo:demo:02&quot; (build) task</div><div class="line">[D] Task source: d:\grunt\Gruntfile.js</div><div class="line">[D] path: ../gruntDemo/demo02</div><div class="line">[D] param: &#123;&quot;config&quot;:&#123;&quot;srcDir&quot;:&quot;../gruntDemo/demo02&quot;,&quot;destDir&quot;:&quot;../gruntDemo/dem</div><div class="line">o02/dest&quot;&#125;,&quot;requirejs&quot;:&#123;&quot;main&quot;:&#123;&quot;options&quot;:&#123;&quot;baseUrl&quot;:&quot;../gruntDemo/demo02&quot;,&quot;path</div><div class="line">s&quot;:&#123;&quot;$&quot;:&quot;src/zepto&quot;,&quot;_&quot;:&quot;src/underscore&quot;,&quot;B&quot;:&quot;src/backbone&quot;,&quot;test&quot;:&quot;src/test01&quot;,</div><div class="line">&quot;text&quot;:&quot;src/require.text&quot;&#125;,&quot;include&quot;:[&quot;$&quot;,&quot;_&quot;,&quot;B&quot;,&quot;test&quot;,&quot;text!src/demo01.html&quot;]</div><div class="line">,&quot;out&quot;:&quot;../gruntDemo/demo02/dest/libs.js&quot;&#125;&#125;&#125;&#125;</div><div class="line"></div><div class="line">Running &quot;requirejs:main&quot; (requirejs) task</div><div class="line">[D] Task source: d:\grunt\node_modules\grunt-contrib-requirejs\tasks\requirejs.j</div><div class="line">s</div><div class="line">&gt;&gt; Tracing dependencies for: d:/gruntDemo/demo02/dest/libs.js</div><div class="line">&gt;&gt; Uglifying file: d:/gruntDemo/demo02/dest/libs.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo02/dest/libs.js</div><div class="line">&gt;&gt; ----------------</div><div class="line">&gt;&gt; d:/gruntDemo/demo02/src/zepto.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo02/src/underscore.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo02/src/backbone.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo02/src/test01.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo02/src/require.text.js</div><div class="line">&gt;&gt; text!src/demo01.html</div></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/i/294743/201403/161444135745409.png" alt=""></p>
+<p>如果改变一下任务命令呢：</p>
+<pre><code>grunt build:gruntDemo:demo:01 --debug
+</code></pre><p>结果证明也是没有问题的，这个地方我就不贴出来了，各位自己去试试，我们分支处理一块暂时到这里</p>
+<p>频道处理其实我们这里已经做了，第一个参数是频道，第二个参数是项目，第三个参数为分支，所以频道相关我们暂时就不说了</p>
+<p>##native与HTML5打包</p>
+<p>最后让我们来看看如何打包native文件，native文件的打包其实与打包HTML5的方式类似，只不过我们这里需要一点点配置，让一个项目可以打包成不同的效果</p>
+<p>仍然以上面demo01为例，他的配置文件可能就需要做一定调整：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;requirejs&quot;: &#123;</div><div class="line">        &quot;options&quot;: &#123;</div><div class="line">            &quot;baseUrl&quot;: &quot;&lt;%= config.srcDir %&gt;&quot;, </div><div class="line">            &quot;paths&quot;: &#123;</div><div class="line">                &quot;$&quot;: &quot;src/zepto&quot;, </div><div class="line">                &quot;_&quot;: &quot;src/underscore&quot;, </div><div class="line">                &quot;B&quot;: &quot;src/backbone&quot;, </div><div class="line">                &quot;test&quot;: &quot;src/test01&quot;, </div><div class="line">                &quot;text&quot;: &quot;src/require.text&quot;</div><div class="line">            &#125;, </div><div class="line">            &quot;web&quot;: &#123;</div><div class="line">                &quot;include&quot;: [</div><div class="line">                    &quot;$&quot;, </div><div class="line">                    &quot;_&quot;, </div><div class="line">                    &quot;B&quot;, </div><div class="line">                    &quot;test&quot;</div><div class="line">                ], </div><div class="line">                &quot;out&quot;: &quot;&lt;%= config.destDir %&gt;/libs.js&quot;</div><div class="line">            &#125;, </div><div class="line">            &quot;app&quot;: &#123;</div><div class="line">                &quot;include&quot;: [</div><div class="line">                    &quot;$&quot;, </div><div class="line">                    &quot;_&quot;, </div><div class="line">                    &quot;B&quot;, </div><div class="line">                    &quot;test&quot;, </div><div class="line">                    &quot;text!src/demo01.html&quot;</div><div class="line">                ], </div><div class="line">                &quot;out&quot;: &quot;&lt;%= config.destDir %&gt;/libs_app.js&quot;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里为了表现一点web与native的不同，我特意将web中少包含一个text文件，具体还得各位项目中去实践</p>
+<p>如此一来，我们的代码需要做些许调整：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">module.exports = function (grunt) &#123;</div><div class="line"></div><div class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-requirejs&apos;);</div><div class="line"></div><div class="line">  //type 打包app包还是web包，channel为频道名称，project为项目名称，这里对应gruntDemo，branch为其分支，默认与grunt目录为平行关系，佛则package.json里面应该有配置信息</div><div class="line">  grunt.registerTask(&apos;build&apos;, &apos;require demo&apos;, function (type, channel, project, branch) &#123;</div><div class="line"></div><div class="line">    var path = &apos;../&apos; + channel + &apos;/&apos; + project + branch;</div><div class="line">    grunt.log.debug(&apos;path: &apos; + path);</div><div class="line"></div><div class="line">    //第一步，读取配置信息</div><div class="line">    var cfg = grunt.file.readJSON(path + &apos;/gruntCfg.json&apos;);</div><div class="line">    cfg = cfg.requirejs.options;</div><div class="line"></div><div class="line">    grunt.config.set(&apos;config&apos;, &#123;</div><div class="line">      srcDir: path,</div><div class="line">      destDir: path + &apos;/dest&apos;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    grunt.log.debug(&apos;param: &apos; + JSON.stringify(cfg));</div><div class="line">    grunt.log.debug(&apos;param: &apos; + cfg[type][&apos;include&apos;]);</div><div class="line"></div><div class="line"></div><div class="line">    var taskCfg = &#123;&#125;;</div><div class="line">    taskCfg.options = &#123;&#125;;</div><div class="line">    taskCfg.options.baseUrl = cfg.baseUrl;</div><div class="line">    taskCfg.options.paths = cfg.paths;</div><div class="line">    taskCfg.options[&apos;include&apos;] = cfg[type][&apos;include&apos;];</div><div class="line">    taskCfg.options.out = cfg[type].out;</div><div class="line"></div><div class="line"></div><div class="line">    grunt.config.set(&apos;requirejs&apos;, &#123; main: taskCfg &#125;);</div><div class="line"></div><div class="line">    //第二步，设置参数</div><div class="line">    grunt.log.debug(&apos;param: &apos; + JSON.stringify(grunt.config()));</div><div class="line"></div><div class="line">    //第三步跑任务</div><div class="line">    grunt.task.run([&apos;requirejs&apos;]);</div><div class="line"></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  grunt.registerTask(&apos;default&apos;, &apos;test demo&apos;, [&apos;build&apos;, &apos;copy&apos;]);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>于是便可以运行了！！！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">$ grunt build:app:gruntDemo:demo:01 --debug</div><div class="line">Running &quot;build:app:gruntDemo:demo:01&quot; (build) task</div><div class="line">[D] Task source: d:\grunt\Gruntfile.js</div><div class="line">[D] path: ../gruntDemo/demo01</div><div class="line">[D] param: &#123;&quot;baseUrl&quot;:&quot;&lt;%= config.srcDir %&gt;&quot;,&quot;paths&quot;:&#123;&quot;$&quot;:&quot;src/zepto&quot;,&quot;_&quot;:&quot;src/u</div><div class="line">nderscore&quot;,&quot;B&quot;:&quot;src/backbone&quot;,&quot;test&quot;:&quot;src/test01&quot;,&quot;text&quot;:&quot;src/require.text&quot;&#125;,&quot;we</div><div class="line">b&quot;:&#123;&quot;include&quot;:[&quot;$&quot;,&quot;_&quot;,&quot;B&quot;,&quot;test&quot;],&quot;out&quot;:&quot;&lt;%= config.destDir %&gt;/libs.js&quot;&#125;,&quot;app&quot;:</div><div class="line">&#123;&quot;include&quot;:[&quot;$&quot;,&quot;_&quot;,&quot;B&quot;,&quot;test&quot;,&quot;text!src/demo01.html&quot;],&quot;out&quot;:&quot;&lt;%= config.destDir</div><div class="line"> %&gt;/libs_app.js&quot;&#125;&#125;</div><div class="line">[D] param: $,_,B,test,text!src/demo01.html</div><div class="line">[D] param: &#123;&quot;config&quot;:&#123;&quot;srcDir&quot;:&quot;../gruntDemo/demo01&quot;,&quot;destDir&quot;:&quot;../gruntDemo/dem</div><div class="line">o01/dest&quot;&#125;,&quot;requirejs&quot;:&#123;&quot;main&quot;:&#123;&quot;options&quot;:&#123;&quot;baseUrl&quot;:&quot;../gruntDemo/demo01&quot;,&quot;path</div><div class="line">s&quot;:&#123;&quot;$&quot;:&quot;src/zepto&quot;,&quot;_&quot;:&quot;src/underscore&quot;,&quot;B&quot;:&quot;src/backbone&quot;,&quot;test&quot;:&quot;src/test01&quot;,</div><div class="line">&quot;text&quot;:&quot;src/require.text&quot;&#125;,&quot;include&quot;:[&quot;$&quot;,&quot;_&quot;,&quot;B&quot;,&quot;test&quot;,&quot;text!src/demo01.html&quot;]</div><div class="line">,	&quot;out&quot;:&quot;../gruntDemo/demo01/dest/libs_app.js&quot;&#125;&#125;&#125;&#125;</div><div class="line"></div><div class="line">Running &quot;requirejs:main&quot; (requirejs) task</div><div class="line">[D] Task source: d:\grunt\node_modules\grunt-contrib-requirejs\tasks\requirejs.j</div><div class="line">s</div><div class="line">&gt;&gt; Tracing dependencies for: d:/gruntDemo/demo01/dest/libs_app.js</div><div class="line">&gt;&gt; Uglifying file: d:/gruntDemo/demo01/dest/libs_app.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo01/dest/libs_app.js</div><div class="line">&gt;&gt; ----------------</div><div class="line">&gt;&gt; d:/gruntDemo/demo01/src/zepto.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo01/src/underscore.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo01/src/backbone.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo01/src/test01.js</div><div class="line">&gt;&gt; d:/gruntDemo/demo01/src/require.text.js</div><div class="line">&gt;&gt; text!src/demo01.html</div></pre></td></tr></table></figure>
+<p>##结语</p>
+<blockquote>
+<p>我们这个星期花了三天时间一起学习了grunt打包相关的知识点，需要这些知识对您有用，搞这个东西还花费了不少心血呢！！！<br><br>若是文中有误请一并提出，后续若是这块有所得我们再一起总结吧<br><br>原来是分成三段，这里将之合一方便各位连贯阅读，篇幅大，记得点赞！<br></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/grunt/" rel="tag"># grunt</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/20/2015-10-19-web-mobile开发总汇/" rel="next" title="web-mobile">
+                <i class="fa fa-chevron-left"></i> web-mobile
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/20/2015-10-19-git之配置/" rel="prev" title="git">
+                git <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.qq6636.com/touxiang/2016-04-05/763d9ae4ea7205206a69cbc38389a0e4.jpg_200.jpg"
+               alt="Matchless" />
+          <p class="site-author-name" itemprop="name">Matchless</p>
+           
+              <p class="site-description motion-element" itemprop="description">登高者必自卑，行远者必自迩，在这个世界上，重要的不是你正站在哪里，而是你正朝什么方向移动！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt"><span class="nav-number">1.</span> <span class="nav-text">grunt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例学习：打包zepto"><span class="nav-number">2.</span> <span class="nav-text">实例学习：打包zepto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Gruntdile与package-json"><span class="nav-number">3.</span> <span class="nav-text">认识Gruntdile与package.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并文件"><span class="nav-number">4.</span> <span class="nav-text">合并文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并requireJS管理的文件"><span class="nav-number">5.</span> <span class="nav-text">合并requireJS管理的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt插件"><span class="nav-number">6.</span> <span class="nav-text">grunt插件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matchless</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

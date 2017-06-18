@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ajax," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="12345678910111213141516##jquery的ajax：	$.ajax(&amp;#123;	  url: &amp;apos;getTwitterFollowers.php&amp;apos;,	  type: &amp;apos;post&amp;apos;,//GET,POST	  dataType:&amp;apos;jsonp&amp;apos;,//html,xml,json,jsonp....	  data: &amp;#123">
+<meta name="keywords" content="ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax">
+<meta property="og:url" content="http://yoursite.com/2015/12/20/2015-12-04-ajax/index.html">
+<meta property="og:site_name" content="Matchless’blog">
+<meta property="og:description" content="12345678910111213141516##jquery的ajax：	$.ajax(&amp;#123;	  url: &amp;apos;getTwitterFollowers.php&amp;apos;,	  type: &amp;apos;post&amp;apos;,//GET,POST	  dataType:&amp;apos;jsonp&amp;apos;,//html,xml,json,jsonp....	  data: &amp;#123">
+<meta property="og:updated_time" content="2017-06-18T04:12:32.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax">
+<meta name="twitter:description" content="12345678910111213141516##jquery的ajax：	$.ajax(&amp;#123;	  url: &amp;apos;getTwitterFollowers.php&amp;apos;,	  type: &amp;apos;post&amp;apos;,//GET,POST	  dataType:&amp;apos;jsonp&amp;apos;,//html,xml,json,jsonp....	  data: &amp;#123">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/12/20/2015-12-04-ajax/"/>
+
+
+
+
+
+  <title>ajax | Matchless’blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Matchless’blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/12/20/2015-12-04-ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matchless">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.qq6636.com/touxiang/2016-04-05/763d9ae4ea7205206a69cbc38389a0e4.jpg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matchless’blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ajax</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-20T00:00:00+08:00">
+                2015-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">##jquery的ajax：</div><div class="line"></div><div class="line"></div><div class="line">	$.ajax(&#123;</div><div class="line">	  url: &apos;getTwitterFollowers.php&apos;,</div><div class="line">	  type: &apos;post&apos;,//GET,POST</div><div class="line">	  dataType:&apos;jsonp&apos;,//html,xml,json,jsonp....</div><div class="line">	  data: &#123;&#125;,//需要的参数</div><div class="line">	  success: function(data) &#123;//请求成功后处理函数</div><div class="line">		$(&apos;#ajaxphp-results&apos;).html(data);</div><div class="line">	  &#125;,</div><div class="line">	  error: function(e) &#123;//失败事的回调</div><div class="line">		//called when there is an error</div><div class="line">		//console.log(e.message);</div><div class="line">	  &#125;</div><div class="line">	&#125;);</div></pre></td></tr></table></figure>
+<h2 id="js原生的ajax："><a href="#js原生的ajax：" class="headerlink" title="js原生的ajax："></a>js原生的ajax：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">var xhr = null; //1-- 创建ajax对象</div><div class="line">if (window.XMLHttpRequest) &#123;</div><div class="line">	xhr = XMLHttpRequest();</div><div class="line">&#125; else &#123; //为了兼容IE6</div><div class="line">	xhr = ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);</div><div class="line">&#125;;</div><div class="line">//2.连接服务器open(方法GET/POST，请求地址， 异步传输)									</div><div class="line">xhr.open(&apos;GET&apos;, &apos;请求数据的地址&apos;, true /*true是阻塞模式*/ );</div><div class="line">xhr.send(); //3 发送请求</div><div class="line">xhr.onreadystatechange = function() &#123;</div><div class="line">	if (xhr.readyState == 4) &#123;</div><div class="line">		/*</div><div class="line">		 ** Http状态码</div><div class="line">		 ** 1xx ：信息展示</div><div class="line">		 ** 2xx ：成功</div><div class="line">		 ** 3xx ：重定向</div><div class="line">		 ** 4xx : 客户端错误</div><div class="line">		 ** 5xx ：服务器端错误</div><div class="line">		 */</div><div class="line">		if (xhr.status == 200) &#123;</div><div class="line">			success(xhr.responseText);</div><div class="line">		&#125; else &#123;</div><div class="line">			if (failed) &#123;</div><div class="line">				failed(xhr.status);</div><div class="line">			&#125;;</div><div class="line">		&#125;;</div><div class="line">	&#125;;</div><div class="line">&#125;;</div><div class="line">// 处理返回数据</div><div class="line">/*</div><div class="line"> ** 每当readyState改变时，就会触发onreadystatechange事件</div><div class="line"> ** readyState属性存储有XMLHttpRequest的状态信息</div><div class="line"> ** 0 ：请求未初始化</div><div class="line"> ** 1 ：服务器连接已建立</div><div class="line"> ** 2 ：请求已接受</div><div class="line"> ** 3 : 请求处理中</div><div class="line"> ** 4 ：请求已完成，且相应就绪</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">function Ajax(type, url, data, success, failed) &#123;</div><div class="line">// 创建ajax对象</div><div class="line">var xhr = null;</div><div class="line">if (window.XMLHttpRequest) &#123;</div><div class="line">	xhr = new XMLHttpRequest();</div><div class="line">&#125; else &#123;</div><div class="line">	xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;)</div><div class="line">&#125;</div><div class="line">var type = type.toUpperCase();</div><div class="line">// 用于清除缓存</div><div class="line">var random = Math.random();</div><div class="line">if (typeof data == &apos;object&apos;) &#123;</div><div class="line">	var str = &apos;&apos;;</div><div class="line">	for (var key in data) &#123;</div><div class="line">		str += key + &apos;=&apos; + data[key] + &apos;&amp;&apos;;</div><div class="line">	&#125;</div><div class="line">	data = str.replace(/&amp;$/, &apos;&apos;);</div><div class="line">&#125;</div><div class="line">if (type == &apos;GET&apos;) &#123;</div><div class="line">	if (data) &#123;</div><div class="line">		xhr.open(&apos;GET&apos;, url + &apos;?&apos; + data, true);</div><div class="line">	&#125; else &#123;</div><div class="line">		xhr.open(&apos;GET&apos;, url + &apos;?t=&apos; + random, true);</div><div class="line">	&#125;</div><div class="line">	xhr.send();</div><div class="line">&#125; else if (type == &apos;POST&apos;) &#123;</div><div class="line">	xhr.open(&apos;POST&apos;, url, true);</div><div class="line">	// 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。</div><div class="line">	xhr.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);</div><div class="line">	xhr.send(data);</div><div class="line">&#125;</div><div class="line">// 处理返回数据</div><div class="line">xhr.onreadystatechange = function() &#123;</div><div class="line">	if (xhr.readyState == 4) &#123;</div><div class="line">		if (xhr.status == 200) &#123;</div><div class="line">			success(xhr.responseText);</div><div class="line">		&#125; else &#123;</div><div class="line">			if (failed) &#123;</div><div class="line">				failed(xhr.status);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">// 测试调用</div><div class="line">var sendData = &#123;</div><div class="line">	name: &apos;asher&apos;,</div><div class="line">	sex: &apos;male&apos;</div><div class="line">&#125;;</div><div class="line">Ajax(&apos;get&apos;, &apos;data/data.html&apos;, sendData, function(data) &#123;</div><div class="line">	console.log(data);</div><div class="line">&#125;, function(error) &#123;</div><div class="line">	console.log(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/20/2015-12-17-gulp-使用/" rel="next" title="gulp">
+                <i class="fa fa-chevron-left"></i> gulp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/20/2015-11-20-验证码组件/" rel="prev" title="倒计时函数封装">
+                倒计时函数封装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.qq6636.com/touxiang/2016-04-05/763d9ae4ea7205206a69cbc38389a0e4.jpg_200.jpg"
+               alt="Matchless" />
+          <p class="site-author-name" itemprop="name">Matchless</p>
+           
+              <p class="site-description motion-element" itemprop="description">登高者必自卑，行远者必自迩，在这个世界上，重要的不是你正站在哪里，而是你正朝什么方向移动！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#js原生的ajax："><span class="nav-number">1.</span> <span class="nav-text">js原生的ajax：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">2.</span> <span class="nav-text">封装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matchless</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

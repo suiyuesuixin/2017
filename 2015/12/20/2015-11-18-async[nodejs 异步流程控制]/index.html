@@ -1,0 +1,863 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="出处 目录： Async介绍 Async安装…….项目地址.">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异步">
+<meta property="og:url" content="http://yoursite.com/2015/12/20/2015-11-18-async[nodejs 异步流程控制]/index.html">
+<meta property="og:site_name" content="Matchless’blog">
+<meta property="og:description" content="出处 目录： Async介绍 Async安装…….项目地址.">
+<meta property="og:updated_time" content="2016-01-03T05:26:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异步">
+<meta name="twitter:description" content="出处 目录： Async介绍 Async安装…….项目地址.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/12/20/2015-11-18-async[nodejs 异步流程控制]/"/>
+
+
+
+
+
+  <title>异步 | Matchless’blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Matchless’blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/12/20/2015-11-18-async[nodejs 异步流程控制]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matchless">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.qq6636.com/touxiang/2016-04-05/763d9ae4ea7205206a69cbc38389a0e4.jpg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matchless’blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">异步</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-20T00:00:00+08:00">
+                2015-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://blog.fens.me/nodejs-async/" target="_blank" rel="external">出处</a></p>
+<h3 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h3><ol>
+<li>Async介绍</li>
+<li>Async安装<br>…….<br><a href="https://github.com/caolan/async" target="_blank" rel="external">项目地址</a>.</li>
+</ol>
+<a id="more"></a>
+<p><a href="http://blog.fens.me/nodejs-async/" target="_blank" rel="external">出处</a></p>
+<h3 id="目录：-1"><a href="#目录：-1" class="headerlink" title="目录："></a>目录：</h3><ol>
+<li>Async介绍</li>
+<li>Async安装</li>
+<li>Async函数介绍</li>
+<li>async_demo使用介绍</li>
+<li>场景：对数据库的连续操作</li>
+<li>async_demo我的分支</li>
+</ol>
+<h3 id="1-Async介绍"><a href="#1-Async介绍" class="headerlink" title="1. Async介绍"></a>1. Async介绍</h3><blockquote>
+<p>Async是一个流程控制工具包，提供了直接而强大的异步功能。基于Javascript为Node.js设计，同时也可以直接在浏览器中使用。Async提供了大约20个函数，包括常用的 map, reduce, filter, forEach 等，异步流程控制模式包括，串行(series)，并行(parallel)，瀑布(waterfall)等。</p>
+</blockquote>
+<p><a href="https://github.com/caolan/async" target="_blank" rel="external">项目地址</a>.</p>
+<h3 id="2-Async安装"><a href="#2-Async安装" class="headerlink" title="2. Async安装"></a>2. Async安装</h3><p><strong> 我们做实验时，安装async有两个方式: </strong></p>
+<ol>
+<li>独立安装async</li>
+<li>下载async demo代码安装</li>
+</ol>
+<ul>
+<li><p>我建议大家用第二种方式安装，这样子实例的代码就都有了。</p>
+</li>
+<li><p>独立安装async(1)</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">~ D:\workspace\javascript&gt;mkdir nodejs-async &amp;&amp; cd nodejs-async</div><div class="line">~ D:\workspace\javascript\nodejs-async&gt;npm install async</div><div class="line">npm http GET https://registry.npmjs.org/async</div><div class="line">npm http 304 https://registry.npmjs.org/async</div><div class="line">async@0.2.9 node_modules\async</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/bsspirit/async_demo" target="_blank" rel="external">打开网页,参照示例学习</a></p>
+<ul>
+<li>下载async demo代码安装(2)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">~ D:\workspace\javascript&gt;git clone git@github.com:bsspirit/async_demo.git nodejs-async</div><div class="line">~ D:\workspace\javascript&gt;cd nodejs-async</div><div class="line">~ D:\workspace\javascript\nodejs-async&gt;npm install</div><div class="line">npm http GET https://registry.npmjs.org/moment</div><div class="line">npm http GET https://registry.npmjs.org/async</div><div class="line">npm http 304 https://registry.npmjs.org/moment</div><div class="line">npm http 304 https://registry.npmjs.org/async</div><div class="line">async@0.2.9 node_modules\async</div><div class="line">moment@2.1.0 node_modules\moment</div></pre></td></tr></table></figure>
+<ul>
+<li>这套demo示例，比较全面的介绍了async的使用，有中文注释。 感谢github社区原创作者freewind，代码更新的贡献者alsotang。当然，我的分支中也修改了一部分代码。在本文最后，我会写到changelog中！*</li>
+</ul>
+<h3 id="3-Async函数介绍"><a href="#3-Async函数介绍" class="headerlink" title="3. Async函数介绍"></a>3. Async函数介绍</h3><p>基于async的0.2.9版本。</p>
+<ul>
+<li><p>async主要实现了三个部分的流程控制功能： *</p>
+</li>
+<li><p>集合: Collections</p>
+</li>
+<li>流程控制: Control Flow</li>
+<li><p>工具类: Utils</p>
+</li>
+<li><p>1). 集合: Collections  *</p>
+</li>
+<li><p>each: 如果想对同一个集合中的所有元素都执行同一个异步操作。</p>
+</li>
+<li>map: 对集合中的每一个元素，执行某个异步操作，得到结果。所有的结果将汇总到最终的callback里。与each的区别是，each只关心操作不管最后的值，而map关心的最后产生的值。</li>
+<li>filter: 使用异步操作对集合中的元素进行筛选, 需要注意的是，iterator的callback只有一个参数，只能接收true或false。</li>
+<li>reject: reject跟filter正好相反，当测试为true时则抛弃</li>
+<li>reduce: 可以让我们给定一个初始值，用它与集合中的每一个元素做运算，最后得到一个值。reduce从左向右来遍历元素，如果想从右向左，可使用reduceRight。</li>
+<li>detect: 用于取得集合中满足条件的第一个元素。</li>
+<li>sortBy: 对集合内的元素进行排序，依据每个元素进行某异步操作后产生的值，从小到大排序。</li>
+<li>some: 当集合中是否有至少一个元素满足条件时，最终callback得到的值为true，否则为false.</li>
+<li>every: 如果集合里每一个元素都满足条件，则传给最终回调的result为true，否则为false</li>
+<li><p>concat: 将多个异步操作的结果合并为一个数组。</p>
+</li>
+<li><p>2). 流程控制: Control Flow *</p>
+</li>
+<li><p>series: 串行执行，一个函数数组中的每个函数，每一个函数执行完成之后才能执行下一个函数。</p>
+</li>
+<li>parallel: 并行执行多个函数，每个函数都是立即执行，不需要等待其它函数先执行。传给最终callback的数组中的数据按照tasks中声明的顺序，而不是执行完成的顺序。</li>
+<li>whilst: 相当于while，但其中的异步调用将在完成后才会进行下一次循环。</li>
+<li>doWhilst: 相当于do…while, doWhilst交换了fn,test的参数位置，先执行一次循环，再做test判断。</li>
+<li>until: until与whilst正好相反，当test为false时循环，与true时跳出。其它特性一致。</li>
+<li>doUntil: doUntil与doWhilst正好相反，当test为false时循环，与true时跳出。其它特性一致。</li>
+<li>forever: 无论条件循环执行，如果不出错，callback永远不被执行。</li>
+<li>waterfall: 按顺序依次执行一组函数。每个函数产生的值，都将传给下一个。</li>
+<li>compose: 创建一个包括一组异步函数的函数集合，每个函数会消费上一次函数的返回值。把f(),g(),h()异步函数，组合成f(g(h()))的形式，通过callback得到返回值。</li>
+<li>applyEach: 实现给一数组中每个函数传相同参数，通过callback返回。如果只传第一个参数，将返回一个函数对象，我可以传参调用。</li>
+<li>queue: 是一个串行的消息队列，通过限制了worker数量，不再一次性全部执行。当worker数量不够用时，新加入的任务将会排队等候，直到有新的worker可用。</li>
+<li>cargo: 一个串行的消息队列，类似于queue，通过限制了worker数量，不再一次性全部执行。不同之处在于，cargo每次会加载满额的任务做为任务单元，只有任务单元中全部执行完成后，才会加载新的任务单元。</li>
+<li>auto: 用来处理有依赖关系的多个任务的执行。</li>
+<li>iterator: 将一组函数包装成为一个iterator，初次调用此iterator时，会执行定义中的第一个函数并返回第二个函数以供调用。</li>
+<li>apply: 可以让我们给一个函数预绑定多个参数并生成一个可直接调用的新函数，简化代码。</li>
+<li>nextTick: 与nodejs的nextTick一样，再最后调用函数。</li>
+<li>times: 异步运行,times可以指定调用几次，并把结果合并到数组中返回</li>
+<li>timesSeries: 与time类似，唯一不同的是同步执行</li>
+<li><p>3). 工具类: Utils *</p>
+</li>
+<li><p>memoize: 让某一个函数在内存中缓存它的计算结果。对于相同的参数，只计算一次，下次就直接拿到之前算好的结果。</p>
+</li>
+<li>unmemoize: 让已经被缓存的函数，返回不缓存的函数引用。</li>
+<li>log: 执行某异步函数，并记录它的返回值，日志输出。</li>
+<li>dir: 与log类似，不同之处在于，会调用浏览器的console.dir()函数，显示为DOM视图。</li>
+<li>noConflict: 如果之前已经在全局域中定义了async变量，当导入本async.js时，会先把之前的async变量保存起来，然后覆盖它。仅仅用于浏览器端，在nodejs中没用，这里无法演示。</li>
+</ul>
+<h3 id="4-async-demo使用介绍"><a href="#4-async-demo使用介绍" class="headerlink" title="4. async_demo使用介绍"></a>4. async_demo使用介绍</h3><p><a href="https://github.com/bsspirit/async_demo" target="_blank" rel="external">详细使用请参考github源代码：</a></p>
+<ul>
+<li>每个函数的用法，有非常详细的实例！！ *</li>
+</ul>
+<h3 id="5-场景：对数据库的连续操作"><a href="#5-场景：对数据库的连续操作" class="headerlink" title="5. 场景：对数据库的连续操作"></a>5. 场景：对数据库的连续操作</h3><ul>
+<li><p>这个场景进背景情况，请参考文章：用Nodejs连接MySQL  </p>
+</li>
+<li><p>原场景中，对数据串行操作，增删改查(CRUD)，代码如下： </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">var mysql = require(&apos;mysql&apos;);</div><div class="line">var conn = mysql.createConnection(&#123;</div><div class="line">    host: &apos;localhost&apos;,</div><div class="line">    user: &apos;nodejs&apos;,</div><div class="line">    password: &apos;nodejs&apos;,</div><div class="line">    database: &apos;nodejs&apos;,</div><div class="line">    port: 3306</div><div class="line">&#125;);</div><div class="line">conn.connect();</div><div class="line">var insertSQL = &apos;insert into t_user(name) values(&quot;conan&quot;),(&quot;fens.me&quot;)&apos;;</div><div class="line">var selectSQL = &apos;select * from t_user limit 10&apos;;</div><div class="line">var deleteSQL = &apos;delete from t_user&apos;;</div><div class="line">var updateSQL = &apos;update t_user set name=&quot;conan update&quot;  where name=&quot;conan&quot;&apos;;</div><div class="line">//delete</div><div class="line">conn.query(deleteSQL, function (err0, res0) &#123;</div><div class="line">    if (err0) console.log(err0);</div><div class="line">    console.log(&quot;DELETE Return ==&gt; &quot;);</div><div class="line">    console.log(res0);</div><div class="line">    //insert</div><div class="line">    conn.query(insertSQL, function (err1, res1) &#123;</div><div class="line">        if (err1) console.log(err1);</div><div class="line">        console.log(&quot;INSERT Return ==&gt; &quot;);</div><div class="line">        console.log(res1);</div><div class="line">        //query</div><div class="line">        conn.query(selectSQL, function (err2, rows) &#123;</div><div class="line">            if (err2) console.log(err2);</div><div class="line"></div><div class="line">            console.log(&quot;SELECT ==&gt; &quot;);</div><div class="line">            for (var i in rows) &#123;</div><div class="line">                console.log(rows[i]);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            //update</div><div class="line">            conn.query(updateSQL, function (err3, res3) &#123;</div><div class="line">                if (err3) console.log(err3);</div><div class="line">                console.log(&quot;UPDATE Return ==&gt; &quot;);</div><div class="line">                console.log(res3);</div><div class="line"></div><div class="line">                //query</div><div class="line">                conn.query(selectSQL, function (err4, rows2) &#123;</div><div class="line">                    if (err4) console.log(err4);</div><div class="line"></div><div class="line">                    console.log(&quot;SELECT ==&gt; &quot;);</div><div class="line">                    for (var i in rows2) &#123;</div><div class="line">                        console.log(rows2[i]);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">//conn.end();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>为了实现了串行操作，所有的调用都是在callback中实现的，5层嵌套结构。这种代码已经变得不可以维护了。所以，需要用async库，对上面的代码结构进行重写！修改后的代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var mysql = require(&apos;mysql&apos;);</div><div class="line">var async = require(&apos;async&apos;);</div><div class="line"></div><div class="line">var conn = mysql.createConnection(&#123;</div><div class="line">    host: &apos;localhost&apos;,</div><div class="line">    user: &apos;nodejs&apos;,</div><div class="line">    password: &apos;nodejs&apos;,</div><div class="line">    database: &apos;nodejs&apos;,</div><div class="line">    port: 3306</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var sqls = &#123;</div><div class="line">    &apos;insertSQL&apos;: &apos;insert into t_user(name) values(&quot;conan&quot;),(&quot;fens.me&quot;)&apos;,</div><div class="line">    &apos;selectSQL&apos;: &apos;select * from t_user limit 10&apos;,</div><div class="line">    &apos;deleteSQL&apos;: &apos;delete from t_user&apos;,</div><div class="line">    &apos;updateSQL&apos;: &apos;update t_user set name=&quot;conan update&quot;  where name=&quot;conan&quot;&apos;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var tasks = [&apos;deleteSQL&apos;, &apos;insertSQL&apos;, &apos;selectSQL&apos;, &apos;updateSQL&apos;, &apos;selectSQL&apos;];</div><div class="line">async.eachSeries(tasks, function (item, callback) &#123;</div><div class="line">    console.log(item + &quot; ==&gt; &quot; + sqls[item]);</div><div class="line">    conn.query(sqls[item], function (err, res) &#123;</div><div class="line">        console.log(res);</div><div class="line">        callback(err, res);</div><div class="line">    &#125;);</div><div class="line">&#125;, function (err) &#123;</div><div class="line">    console.log(&quot;err: &quot; + err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>控制台输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">deleteSQL ==&gt; delete from t_user</div><div class="line">&#123; fieldCount: 0,</div><div class="line">  affectedRows: 0,</div><div class="line">  insertId: 0,</div><div class="line">  serverStatus: 34,</div><div class="line">  warningCount: 0,</div><div class="line">  message: &apos;&apos;,</div><div class="line">  protocol41: true,</div><div class="line">  changedRows: 0 &#125;</div><div class="line">insertSQL ==&gt; insert into t_user(name) values(&quot;conan&quot;),(&quot;fens.me&quot;)</div><div class="line">&#123; fieldCount: 0,</div><div class="line">  affectedRows: 2,</div><div class="line">  insertId: 45,</div><div class="line">  serverStatus: 2,</div><div class="line">  warningCount: 0,</div><div class="line">  message: &apos;&amp;Records: 2  Duplicates: 0  Warnings: 0&apos;,</div><div class="line">  protocol41: true,</div><div class="line">  changedRows: 0 &#125;</div><div class="line">selectSQL ==&gt; select * from t_user limit 10</div><div class="line">[ &#123; id: 45,</div><div class="line">    name: &apos;conan&apos;,</div><div class="line">    create_date: Fri Sep 13 2013 12:24:51 GMT+0800 (中国标准时间) &#125;,</div><div class="line">  &#123; id: 46,</div><div class="line">    name: &apos;fens.me&apos;,</div><div class="line">    create_date: Fri Sep 13 2013 12:24:51 GMT+0800 (中国标准时间) &#125; ]</div><div class="line">updateSQL ==&gt; update t_user set name=&quot;conan update&quot;  where name=&quot;conan&quot;</div><div class="line">&#123; fieldCount: 0,</div><div class="line">  affectedRows: 1,</div><div class="line">  insertId: 0,</div><div class="line">  serverStatus: 2,</div><div class="line">  warningCount: 0,</div><div class="line">  message: &apos;(Rows matched: 1  Changed: 1  Warnings: 0&apos;,</div><div class="line">  protocol41: true,</div><div class="line">  changedRows: 1 &#125;</div><div class="line">selectSQL ==&gt; select * from t_user limit 10</div><div class="line">[ &#123; id: 45,</div><div class="line">    name: &apos;conan update&apos;,</div><div class="line">    create_date: Fri Sep 13 2013 12:24:51 GMT+0800 (中国标准时间) &#125;,</div><div class="line">  &#123; id: 46,</div><div class="line">    name: &apos;fens.me&apos;,</div><div class="line">    create_date: Fri Sep 13 2013 12:24:51 GMT+0800 (中国标准时间) &#125; ]</div><div class="line">err: null</div></pre></td></tr></table></figure>
+<blockquote>
+<p>代码一下读性就增强了许多倍，这就是高效的开发。<br> 不用不知道，一用真强大！！！<br>当然还有其他的工作流框架来完成这件事情step,then.js,windjs。<br>windjs请参考：wind.js助力异步编程 </p>
+</blockquote>
+<h3 id="6-async-demo我的分支"><a href="#6-async-demo我的分支" class="headerlink" title="6. async_demo我的分支"></a>6. async_demo我的分支</h3><p><a href="https://github.com/bsspirit/async_demo" target="_blank" rel="external">demo</a></p>
+<ol>
+<li>forEach.js改名为each.js</li>
+<li>each.js文件中的async.forEach，改为async.each</li>
+<li>map.js增加mapLimit函数</li>
+<li>filter_reject.js对注释补充</li>
+<li>filter_reject.js增加rejectSeries函数</li>
+<li>reduce.js增加注释</li>
+<li>detect.js增加注释</li>
+<li>sortBy.js增加注释</li>
+<li>some.js对注释补充</li>
+<li>every.js对注释补充和修改</li>
+<li>series.js调整注释格式</li>
+<li>parallel.js调整注释格式</li>
+<li>parallel.js增加parallelLimit函数</li>
+<li>whilist_until.js调整注释格式</li>
+<li>whilist_until.js增加doWhilst函数</li>
+<li>whilist_until.js增加doUntil函数</li>
+<li>whilist_until.js增加forever函数</li>
+<li>waterfall.js调整注释格式</li>
+<li>增加compose.js文件</li>
+<li>apply.js补充注释并增加一个实例</li>
+<li>修改nextTick.js实例</li>
+<li>增加times.js文件，包括times和timesSeries函数</li>
+<li>修改iterator.js实例</li>
+<li>修正auto.js关于第二个实例的错误解释</li>
+<li>修改queue.js实例和注释</li>
+<li>修改cargo.js文件</li>
+<li>增加applyEach.js文件</li>
+<li>修改utils.js实例和注释</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/20/2015-11-20-用js判断闰年平年/" rel="next" title="js计算闰年平年">
+                <i class="fa fa-chevron-left"></i> js计算闰年平年
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/20/2015-11-16-jquery表单验证/" rel="prev" title="jquery">
+                jquery <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.qq6636.com/touxiang/2016-04-05/763d9ae4ea7205206a69cbc38389a0e4.jpg_200.jpg"
+               alt="Matchless" />
+          <p class="site-author-name" itemprop="name">Matchless</p>
+           
+              <p class="site-description motion-element" itemprop="description">登高者必自卑，行远者必自迩，在这个世界上，重要的不是你正站在哪里，而是你正朝什么方向移动！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录："><span class="nav-number">1.</span> <span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录：-1"><span class="nav-number">2.</span> <span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Async介绍"><span class="nav-number">3.</span> <span class="nav-text">1. Async介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Async安装"><span class="nav-number">4.</span> <span class="nav-text">2. Async安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Async函数介绍"><span class="nav-number">5.</span> <span class="nav-text">3. Async函数介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-async-demo使用介绍"><span class="nav-number">6.</span> <span class="nav-text">4. async_demo使用介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-场景：对数据库的连续操作"><span class="nav-number">7.</span> <span class="nav-text">5. 场景：对数据库的连续操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-async-demo我的分支"><span class="nav-number">8.</span> <span class="nav-text">6. async_demo我的分支</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matchless</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
